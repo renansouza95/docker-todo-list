@@ -1,9 +1,9 @@
-FROM alpine:3.14
+FROM node:14-alpine
 WORKDIR /todo-app/front-end
-COPY package.json, package-lock.json, ./
+ADD node_modules.tar.gz ./node_modules.tar.gz
+COPY package*.json ./
 COPY src ./src
 COPY public ./public
 RUN npm install
 EXPOSE 3000
-ENTRYPOINT ["npm"]
-CMD ["start"]
+ENTRYPOINT ["npm", "start"]
